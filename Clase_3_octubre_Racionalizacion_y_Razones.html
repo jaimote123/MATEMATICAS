@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clase 3 de octubre · Racionalización, razones y proporciones</title>
+<style>
+:root{
+  --bg:#f6f4ef; --paper:#ffffff; --ink:#1d2330; --muted:#5b6475; --line:#e3ded3;
+  --accent:#1f5f8b; --accent-soft:#e6eff6; --red:#b8322a; --red-soft:#fbeceb;
+  --green:#23784a; --green-soft:#e7f4ec; --amber:#9a6a00; --amber-soft:#fbf3df;
+  --violet:#5b4a9e; --violet-soft:#efedf8;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mathf:"Cambria Math","STIX Two Math","Latin Modern Math",Cambria,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#14171d; --paper:#1c2028; --ink:#e7e9ee; --muted:#a3abba; --line:#2e3440;
+    --accent:#7cb4dc; --accent-soft:#1d2d3b; --red:#f08a80; --red-soft:#3a2120;
+    --green:#7fd19f; --green-soft:#1b3326; --amber:#e6be62; --amber-soft:#352c16;
+    --violet:#b3a6ee; --violet-soft:#2a2540;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+/* ---------- header / tabs ---------- */
+header.top{background:var(--paper);border-bottom:1px solid var(--line)}
+.top-inner{max-width:1180px;margin:0 auto;padding:28px 20px 0}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.15;margin:.3em 0 .35em}
+.lede{color:var(--muted);max-width:760px;margin:0 0 18px}
+.tabs{display:flex;gap:4px;margin-top:8px}
+.tab{appearance:none;border:1px solid var(--line);border-bottom:none;background:transparent;color:var(--muted);font:600 .98rem var(--sans);padding:11px 18px;border-radius:10px 10px 0 0;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--bg);color:var(--ink);border-color:var(--line)}
+.tab .n{display:inline-block;min-width:1.5em;margin-right:6px;padding:0 .4em;border-radius:99px;background:var(--accent-soft);color:var(--accent);font-size:.8rem;text-align:center}
+/* ---------- layout ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+.study{display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px}
+nav.toc{position:sticky;top:16px;align-self:start;font-size:.9rem}
+nav.toc h4{margin:0 0 8px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+nav.toc ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+nav.toc li a{display:block;padding:5px 0 5px 14px;margin-left:-2px;border-left:2px solid transparent;color:var(--muted);text-decoration:none;line-height:1.35}
+nav.toc li a:hover,nav.toc li a.on{color:var(--ink);border-left-color:var(--accent)}
+nav.toc .go-exam{display:block;margin-top:16px;padding:10px 14px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;text-align:center}
+@media (prefers-color-scheme: dark){nav.toc .go-exam{color:#0f1720}}
+@media (max-width:900px){.study{grid-template-columns:1fr}nav.toc{position:static}}
+main.content{min-width:0}
+section.mod{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:28px clamp(18px,3.5vw,40px);margin-bottom:26px}
+.mod-head{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+.mod-num{font:700 .78rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:3px 10px;border-radius:99px}
+.mod-time{font-size:.8rem;color:var(--muted)}
+h2{font-family:var(--serif);font-weight:600;font-size:1.65rem;line-height:1.2;margin:.2em 0 .5em}
+h3{font-size:1.08rem;margin:1.6em 0 .5em}
+p{margin:.6em 0}
+ul,ol{padding-left:1.3em}
+li{margin:.25em 0}
+.obj{color:var(--muted);font-style:italic;margin-top:0}
+/* callouts */
+.box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid var(--line)}
+.box > :first-child{margin-top:0}.box > :last-child{margin-bottom:0}
+.box .lbl{display:block;font:700 .74rem var(--sans);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.def{background:var(--accent-soft);border-color:transparent}.def .lbl{color:var(--accent)}
+.warn{background:var(--red-soft);border-color:transparent}.warn .lbl{color:var(--red)}
+.tip{background:var(--green-soft);border-color:transparent}.tip .lbl{color:var(--green)}
+.note{background:var(--amber-soft);border-color:transparent}.note .lbl{color:var(--amber)}
+.prof{background:var(--violet-soft);border-color:transparent}.prof .lbl{color:var(--violet)}
+.prof p{font-family:var(--serif);font-size:1.03rem}
+/* worked example */
+.ex{border:1px solid var(--line);border-radius:12px;margin:18px 0;overflow:hidden}
+.ex-h{background:var(--bg);padding:10px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-weight:600}
+.ex-h small{color:var(--muted);font-weight:500}
+.ex-b{padding:6px 16px 14px}
+.steps{list-style:none;padding:0;margin:0;counter-reset:s}
+.steps > li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:10px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.steps > li:last-child{border-bottom:none}
+.steps > li > div{min-width:0}
+.box,.ex-b,.ex{min-width:0}
+@media (max-width:600px){.md{font-size:1.05em;text-align:left}.steps > li{grid-template-columns:24px 1fr;gap:8px}}
+.steps > li::before{content:counter(s);width:24px;height:24px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font:700 .8rem/24px var(--sans);text-align:center;margin-top:3px}
+.steps .txt{color:var(--muted);font-size:.95rem}
+.result{display:inline-block;margin-top:4px;padding:3px 10px;border-radius:8px;background:var(--green-soft);color:var(--green);font-weight:600;font-size:.9rem}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.95rem}
+th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:middle}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tbl-wrap{overflow-x:auto}
+.timeline{list-style:none;padding:0;margin:10px 0}
+.timeline li{display:grid;grid-template-columns:92px 1fr;gap:12px;padding:7px 0;border-bottom:1px solid var(--line)}
+.timeline time{font-variant-numeric:tabular-nums;color:var(--accent);font-weight:600;font-size:.92rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-size:.88rem;background:var(--bg)}
+/* ---------- math ---------- */
+.mx{font-family:var(--mathf);font-size:1.12em;white-space:nowrap}
+.mx i{font-style:italic}
+.md{font-family:var(--mathf);font-size:1.2em;text-align:center;margin:10px 0;overflow-x:auto;overflow-y:hidden;padding:6px 0;white-space:nowrap}
+.md i{font-style:italic}
+.fr{display:inline-flex;flex-direction:column;align-items:stretch;vertical-align:middle;text-align:center;margin:0 .12em}
+.fr > .nu{border-bottom:1.3px solid currentColor;padding:0 .18em .08em;display:block}
+.fr > .de{padding:.08em .18em 0;display:block}
+.sq{display:inline-flex;align-items:stretch;white-space:nowrap}
+.sq > .sr{font-family:var(--sans);font-weight:300;padding-right:.02em;transform:scaleY(1.08);transform-origin:bottom}
+.sq > .rad{border-top:1.3px solid currentColor;padding:0 .12em 0 .08em;margin-top:.12em}
+.op{padding:0 .22em}
+sup{font-size:.68em;vertical-align:.75em;line-height:0}
+sub{font-size:.68em}
+.cx{position:relative;display:inline-block}
+.cx::after{content:"";position:absolute;left:-.1em;right:-.1em;top:52%;border-top:2px solid var(--red);transform:rotate(-14deg);pointer-events:none}
+.hl{color:var(--accent);font-weight:600}
+.hr{color:var(--red)}
+.hg{color:var(--green)}
+.thin{display:inline-block;width:.18em}
+.quad{display:inline-block;width:1.2em}
+/* ---------- exam ---------- */
+.exam{max-width:860px;margin:0 auto}
+.exam-intro{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px clamp(18px,3vw,32px);margin-bottom:20px}
+.exam-intro h2{margin-top:0}
+.progress{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;margin-bottom:8px;display:flex;align-items:center;gap:14px}
+.bar{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar > span{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+.progress .count{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.q{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px clamp(16px,3vw,26px);margin-bottom:16px;scroll-margin-top:60px}
+.q-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}
+.q-n{font:700 .8rem var(--sans);color:var(--muted);letter-spacing:.06em}
+.q-tag{font-size:.75rem;color:var(--accent);background:var(--accent-soft);border-radius:99px;padding:2px 10px}
+.qt{font-size:1.04rem;margin:.3em 0 .8em}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:12px;align-items:center;border:1.5px solid var(--line);border-radius:10px;padding:10px 14px;cursor:pointer;transition:border-color .15s, background .15s;min-height:48px}
+.opt:hover{border-color:var(--accent)}
+.opt input{accent-color:var(--accent);width:18px;height:18px;flex:none;margin:0}
+.opt .k{font-weight:700;color:var(--muted);width:1.2em;flex:none}
+.opt:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.q.graded .opt{cursor:default}
+.q.graded .opt.is-correct{border-color:var(--green);background:var(--green-soft)}
+.q.graded .opt.is-wrong{border-color:var(--red);background:var(--red-soft)}
+.badge{display:none;font:700 .78rem var(--sans);padding:3px 10px;border-radius:99px}
+.q.graded .badge{display:inline-block}
+.q.ok .badge{background:var(--green-soft);color:var(--green)}
+.q.bad .badge{background:var(--red-soft);color:var(--red)}
+.fb{display:none;margin-top:14px;border-radius:10px;padding:12px 16px;font-size:.96rem}
+.q.graded .fb{display:block}
+.q.ok .fb{background:var(--green-soft)}
+.q.bad .fb{background:var(--red-soft)}
+.fb .why{display:none}
+.fb .why.show{display:block;margin-bottom:8px}
+.fb .lbl{font-weight:700}
+.actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:24px 0}
+.btn{appearance:none;border:none;border-radius:10px;padding:13px 22px;font:600 1rem var(--sans);cursor:pointer;background:var(--accent);color:#fff}
+@media (prefers-color-scheme: dark){.btn{color:#0f1720}}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.warn-msg{color:var(--red);font-size:.92rem}
+#summary{display:none;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px clamp(18px,3vw,30px);margin-bottom:18px}
+#summary.show{display:block}
+.score{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.score .big{font:700 3rem/1 var(--serif)}
+.score .big small{font-size:1.2rem;color:var(--muted)}
+.mods{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:14px}
+.mods div{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:.88rem;display:flex;justify-content:space-between;gap:8px}
+.filter{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.filter button{appearance:none;border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:99px;padding:6px 14px;font:600 .85rem var(--sans);cursor:pointer}
+.filter button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.hidden{display:none !important}
+footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 20px 40px}
+@media print{.tabs,nav.toc,.progress,.actions{display:none}.study{display:block}#examen{display:block !important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="eyebrow">Matemáticas · Ingeniería · Clase del 3 de octubre</div>
+    <h1>Racionalización de numeradores y denominadores; razones y proporciones</h1>
+    <p class="lede">Material de estudio construido a partir de la grabación completa (≈ 1 h 58 min) y de lo que el profesor escribió en el tablero. Primero estudia los módulos; después ponte a prueba con el examen.</p>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" id="t-estudio" aria-controls="estudio" aria-selected="true"><span class="n">1</span>Material de estudio</button>
+      <button class="tab" role="tab" id="t-examen" aria-controls="examen" aria-selected="false"><span class="n">2</span>Examen de práctica</button>
+    </div>
+  </div>
+</header>
+
+<!-- =================================================================== -->
+<!-- ======================  SECCIÓN 1: ESTUDIO  ======================== -->
+<!-- =================================================================== -->
+<div class="wrap" id="estudio" role="tabpanel" aria-labelledby="t-estudio">
+<div class="study">
+  <nav class="toc" aria-label="Módulos">
+    <h4>Contenido</h4>
+    <ol>
+      <li><a href="#m0">Mapa de la clase</a></li>
+      <li><a href="#m1">1 · Fundamentos de la racionalización</a></li>
+      <li><a href="#m2">2 · Racionalizar con números</a></li>
+      <li><a href="#m3">3 · Racionalizar con variables</a></li>
+      <li><a href="#m4">4 · Raíces en ambos lados</a></li>
+      <li><a href="#m5">5 · Reglas de simplificación</a></li>
+      <li><a href="#m6">6 · ¿Para qué sirve? Límites</a></li>
+      <li><a href="#m7">7 · Razones</a></li>
+      <li><a href="#m8">8 · Proporciones</a></li>
+      <li><a href="#m9">Resumen y pendientes</a></li>
+    </ol>
+    <a class="go-exam" href="#" data-goto="examen">Ir al examen →</a>
+  </nav>
+
+  <main class="content">
+
+  <!-- ===== Mapa ===== -->
+  <section class="mod" id="m0">
+    <div class="mod-head"><span class="mod-num">Inicio</span><span class="mod-time">0:00 – 5:40</span></div>
+    <h2>Mapa de la clase</h2>
+    <p>La clase anterior fue el examen de <b>potenciación y radicación</b>. Esta sesión continúa con los radicales y trabaja un tema que el profesor considera clave para lo que viene: la <b>racionalización</b>. Al final se inicia el tema de <b>razones y proporciones</b> con la guía del curso.</p>
+    <div class="box prof"><span class="lbl">Por qué importa, según el profesor</span>
+      <p>“El próximo semestre empiezan a trabajar límites. Cuando resuelvan límites por el método analítico necesitan saber racionalizar, para que cuando lleguen allá no digan ‘eso no me lo enseñaron’.” Ustedes son de ingeniería, y la carrera tiene una componente matemática fuerte: programación, métodos numéricos, cálculo diferencial e integral, ecuaciones diferenciales.</p>
+    </div>
+    <h3>Línea de tiempo de la grabación</h3>
+    <ul class="timeline">
+      <li><time>0:00</time><span>Comentarios sobre el examen anterior; motivación (límites y cálculo).</span></li>
+      <li><time>5:40</time><span>Ej. 1: racionalizar el denominador de $\frac{3}{1+\sqrt{7}}$.</span></li>
+      <li><time>21:55</time><span>Ej. 2: racionalizar el numerador de $\frac{\sqrt{11}-\sqrt{5}}{3}$.</span></li>
+      <li><time>31:55</time><span>Repaso: ¿qué es racionalizar?</span></li>
+      <li><time>34:00</time><span>Ej. 3 (con variables): $\frac{t-9}{\sqrt{t}-3}$.</span></li>
+      <li><time>43:00</time><span>Ej. 4: $\frac{\sqrt{r}-2}{r-4}$ (racionalizar el numerador).</span></li>
+      <li><time>50:30</time><span>Ej. 5: $\frac{x}{\sqrt{x+2}-\sqrt{3}}$ y reglas para simplificar.</span></li>
+      <li><time>1:01:00</time><span>Ej. 6: raíces arriba y abajo, $\frac{\sqrt{x}-\sqrt{y}}{\sqrt{x}+\sqrt{y}}$; errores típicos.</span></li>
+      <li><time>1:07:30</time><span>Ejercicio para punto: $\frac{\sqrt{x+h}-\sqrt{x}}{h}$ (se corrige en 1:22).</span></li>
+      <li><time>1:27:00</time><span>¿Cuál racionalizar cuando hay raíces en ambos lados? Ejemplo con límite.</span></li>
+      <li><time>1:36:00</time><span>Razones y proporciones (guía, págs. 62–64); llamado a lista.</span></li>
+      <li><time>1:53:00</time><span>Proporción, tareas y cierre.</span></li>
+    </ul>
+  </section>
+
+  <!-- ===== Módulo 1 ===== -->
+  <section class="mod" id="m1">
+    <div class="mod-head"><span class="mod-num">Módulo 1</span><span class="mod-time">8:20 – 13:00 · 31:55 – 33:30</span></div>
+    <h2>Fundamentos de la racionalización</h2>
+    <p class="obj">Objetivo: entender qué significa racionalizar, qué es el conjugado y por qué funciona.</p>
+
+    <div class="box def"><span class="lbl">Definición</span>
+      <p><b>Racionalizar</b> es un procedimiento que se usa cuando en una expresión algebraica (una división) hay raíces en el numerador o en el denominador —todos los términos dentro de la raíz, o solo una parte de ellos—. Consiste en <b>eliminar los radicales del numerador o del denominador</b>, según lo que se pida.</p>
+    </div>
+    <ul>
+      <li><b>“Racionalizar el denominador”</b>: la raíz está abajo y la queremos quitar de ahí.</li>
+      <li><b>“Racionalizar el numerador”</b>: la raíz está arriba y la queremos quitar de ahí.</li>
+      <li><b>“Racionalizar”</b> (sin decir cuál): se racionaliza la parte donde está la raíz. Si hay raíces en ambos lados, ver el <a href="#m4">Módulo 4</a>.</li>
+    </ul>
+
+    <div class="box def"><span class="lbl">Conjugado</span>
+      <p>El <b>conjugado</b> es la misma expresión (la que contiene el radical) pero con el <b>signo contrario entre sus dos términos</b>.</p>
+      <div class="md">1+\sqrt{7} \quad\Rightarrow\quad 1-\sqrt{7} \qquad\qquad \sqrt{x+2}-\sqrt{3}\quad\Rightarrow\quad\sqrt{x+2}+\sqrt{3}</div>
+    </div>
+    <div class="box warn"><span class="lbl">Ojo con el signo</span>
+      <p>Solo cambia el signo que <b>separa los dos términos</b>. No se cambia el signo que está dentro del radicando: el conjugado de $\sqrt{x+2}-\sqrt{3}$ es $\sqrt{x+2}+\sqrt{3}$, <b>no</b> $\sqrt{x-2}+\sqrt{3}$. (Pregunta que surgió en clase, min 52:30.)</p>
+    </div>
+
+    <h3>¿Por qué funciona?</h3>
+    <p>Se multiplica la expresión, arriba y abajo, por el conjugado. Eso es multiplicar por $\frac{\text{conjugado}}{\text{conjugado}} = 1$, así que <b>no se altera el ejercicio</b>: solo se aplica una estrategia.</p>
+    <p>Al multiplicar un binomio por su conjugado, los términos del medio se cancelan y queda “el primero al cuadrado menos el segundo al cuadrado”. Más adelante esto se llamará <b>diferencia de cuadrados</b> (el profesor la nombró, pero aclaró que aún no se ha visto factorización):</p>
+    <div class="md">(a+b)(a-b) = a^{2} - ab + ab - b^{2} = a^{2}-b^{2}</div>
+    <p>Y como cada raíz cuadrada queda elevada al cuadrado, <b>el 2 del exponente cancela la raíz</b>:</p>
+    <div class="md">(\sqrt{7})^{2} = 7 \qquad \sqrt{7}\cdot\sqrt{7} = 7 \qquad (\sqrt{x+2})^{2} = x+2</div>
+    <div class="box tip"><span class="lbl">Idea clave</span>
+      <p>La racionalización busca <b>forzar una diferencia de cuadrados</b> en el lado que queremos racionalizar, para que las raíces desaparezcan de ahí.</p>
+    </div>
+
+    <h3>Procedimiento que pidió el profesor</h3>
+    <ol>
+      <li><b>Copiar el ejercicio tal cual.</b> “El ejercicio es parte del procedimiento y no lo colocan.”</li>
+      <li><b>Multiplicar arriba y abajo por el conjugado</b> de la parte que se va a racionalizar.</li>
+      <li><b>Hacer la distributiva solo donde quedaron los dos paréntesis conjugados</b> (mismos términos, signo contrario). El otro lado se deja <b>indicado</b>.</li>
+      <li><b>Cancelar</b> cada 2 del exponente con su raíz, y los términos iguales con signo contrario.</li>
+      <li><b>Simplificar</b> (operar números, cancelar factores comunes).</li>
+    </ol>
+    <div class="box note"><span class="lbl">¿Y si la raíz “pasa al otro lado”?</span>
+      <p>Es normal. Al racionalizar el denominador, a veces la raíz queda arriba (y viceversa). No importa: el objetivo era quitarla del lugar indicado. El sentido de esto se ve mejor con variables y, sobre todo, al calcular límites.</p>
+    </div>
+  </section>
+
+  <!-- ===== Módulo 2 ===== -->
+  <section class="mod" id="m2">
+    <div class="mod-head"><span class="mod-num">Módulo 2</span><span class="mod-time">5:40 – 30:20</span></div>
+    <h2>Racionalizar con números</h2>
+    <p class="obj">Objetivo: aplicar el procedimiento completo en expresiones sin variables.</p>
+
+    <div class="ex">
+      <div class="ex-h"><span>Ejemplo 1 · Racionalizar el denominador</span><small>min 5:40 – 19:00</small></div>
+      <div class="ex-b">
+        <div class="md">\frac{3}{1+\sqrt{7}}</div>
+        <ol class="steps">
+          <li><div><div class="txt">Copiamos y multiplicamos arriba y abajo por el conjugado del denominador, $1-\sqrt{7}$:</div>
+            <div class="md">\frac{3}{1+\sqrt{7}}\cdot\frac{1-\sqrt{7}}{1-\sqrt{7}} = \frac{3(1-\sqrt{7})}{(1+\sqrt{7})(1-\sqrt{7})}</div></div></li>
+          <li><div><div class="txt">Arriba se deja indicado (no hace falta hacer $3\cdot1$ y $3\cdot\sqrt{7}$). Abajo sí hacemos la distributiva, término a término:</div>
+            <div class="md">= \frac{3(1-\sqrt{7})}{1\cdot1 \;-\; 1\cdot\sqrt{7} \;+\; \sqrt{7}\cdot1 \;-\; \sqrt{7}\cdot\sqrt{7}} = \frac{3(1-\sqrt{7})}{1\hr{\cancel{-\sqrt{7}}}\hr{\cancel{+\sqrt{7}}}-(\sqrt{7})^{2}}</div></div></li>
+          <li><div><div class="txt">El 2 cancela la raíz: $(\sqrt{7})^{2}=7$. Los términos $-\sqrt{7}$ y $+\sqrt{7}$ se anulan:</div>
+            <div class="md">= \frac{3(1-\sqrt{7})}{1-7} = \frac{3(1-\sqrt{7})}{-6}</div></div></li>
+          <li><div><div class="txt">Simplificamos 3 con 6 (tercera de 3 = 1, tercera de 6 = 2):</div>
+            <div class="md">= \frac{1-\sqrt{7}}{-2}</div></div></li>
+          <li><div><div class="txt">Una fracción negativa puede llevar el “−” arriba, en la mitad o abajo. Subiéndolo y aplicando ley de signos:</div>
+            <div class="md">= \frac{-(1-\sqrt{7})}{2} = \frac{\sqrt{7}-1}{2}</div>
+            <span class="result">Resultado: $\frac{\sqrt{7}-1}{2}$ ✓</span></div></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="ex">
+      <div class="ex-h"><span>Ejemplo 2 · Racionalizar el numerador</span><small>min 21:55 – 29:45</small></div>
+      <div class="ex-b">
+        <div class="md">\frac{\sqrt{11}-\sqrt{5}}{3}</div>
+        <ol class="steps">
+          <li><div><div class="txt">Ahora la raíz que interesa está arriba. Multiplicamos por el conjugado del <b>numerador</b>:</div>
+            <div class="md">\frac{\sqrt{11}-\sqrt{5}}{3}\cdot\frac{\sqrt{11}+\sqrt{5}}{\sqrt{11}+\sqrt{5}} = \frac{(\sqrt{11}-\sqrt{5})(\sqrt{11}+\sqrt{5})}{3(\sqrt{11}+\sqrt{5})}</div></div></li>
+          <li><div><div class="txt">Esta vez la distributiva se hace <b>arriba</b>; abajo queda indicado:</div>
+            <div class="md">= \frac{(\sqrt{11})^{2}\hr{\cancel{+\sqrt{11}\sqrt{5}}}\hr{\cancel{-\sqrt{5}\sqrt{11}}}-(\sqrt{5})^{2}}{3(\sqrt{11}+\sqrt{5})} = \frac{11-5}{3(\sqrt{11}+\sqrt{5})}</div></div></li>
+          <li><div><div class="txt">Restamos y simplificamos 6 con 3:</div>
+            <div class="md">= \frac{6}{3(\sqrt{11}+\sqrt{5})} = \frac{2}{\sqrt{11}+\sqrt{5}}</div>
+            <span class="result">Resultado: $\frac{2}{\sqrt{11}+\sqrt{5}}$ ✓</span></div></li>
+        </ol>
+      </div>
+    </div>
+    <div class="box prof"><span class="lbl">Pregunta frecuente en clase</span>
+      <p>“¿Pero quedó otra vez la raíz?” — Sí, pasó de arriba a abajo. Lo que se logró fue el proceso de racionalización: quitarla del lugar donde estaba. No siempre desaparecen las raíces del todo.</p>
+    </div>
+  </section>
+
+  <!-- ===== Módulo 3 ===== -->
+  <section class="mod" id="m3">
+    <div class="mod-head"><span class="mod-num">Módulo 3</span><span class="mod-time">34:00 – 1:00:30</span></div>
+    <h2>Racionalizar con variables</h2>
+    <p class="obj">Objetivo: ver el verdadero efecto de racionalizar — se cancelan factores y la expresión se simplifica.</p>
+
+    <div class="ex">
+      <div class="ex-h"><span>Ejemplo 3 · “Racionalizar” (sin indicar cuál)</span><small>min 34:00 – 43:00</small></div>
+      <div class="ex-b">
+        <div class="md">\frac{t-9}{\sqrt{t}-3}</div>
+        <p class="txt">Si no dicen cuál, se racionaliza donde está la raíz: el <b>denominador</b>.</p>
+        <ol class="steps">
+          <li><div><div class="txt">Multiplicamos por el conjugado $\sqrt{t}+3$ (recordar: $\frac{\sqrt{t}+3}{\sqrt{t}+3}=1$):</div>
+            <div class="md">\frac{t-9}{\sqrt{t}-3}\cdot\frac{\sqrt{t}+3}{\sqrt{t}+3} = \frac{(t-9)(\sqrt{t}+3)}{(\sqrt{t}-3)(\sqrt{t}+3)}</div></div></li>
+          <li><div><div class="txt">Distributiva solo abajo:</div>
+            <div class="md">= \frac{(t-9)(\sqrt{t}+3)}{(\sqrt{t})^{2}\hr{\cancel{+3\sqrt{t}}}\hr{\cancel{-3\sqrt{t}}}-9} = \frac{(t-9)(\sqrt{t}+3)}{t-9}</div></div></li>
+          <li><div><div class="txt">Aquí se ve por qué <b>no</b> había que distribuir arriba: el factor $(t-9)$ aparece arriba y abajo y se cancela.</div>
+            <div class="md">= \frac{\hr{\cancel{(t-9)}}(\sqrt{t}+3)}{\hr{\cancel{t-9}}} = \sqrt{t}+3</div>
+            <span class="result">Resultado: $\sqrt{t}+3$ ✓</span></div></li>
+        </ol>
+      </div>
+    </div>
+    <div class="box tip"><span class="lbl">Lo que dijo el profesor</span>
+      <p>En Matemáticas II / cálculo diferencial, esto es lo que <b>elimina la indeterminación</b> de un límite: con el resultado simplificado ya se puede evaluar. “Por ahora asuman los pasos; después le encuentran mucho más sentido.”</p>
+    </div>
+
+    <div class="ex">
+      <div class="ex-h"><span>Ejemplo 4 · Racionalizar el numerador</span><small>min 43:00 – 48:00</small></div>
+      <div class="ex-b">
+        <div class="md">\frac{\sqrt{r}-2}{r-4}</div>
+        <ol class="steps">
+          <li><div><div class="txt">Conjugado del numerador: $\sqrt{r}+2$.</div>
+            <div class="md">\frac{\sqrt{r}-2}{r-4}\cdot\frac{\sqrt{r}+2}{\sqrt{r}+2}</div></div></li>
+          <li><div><div class="txt">Atajo (ya aprendido): conjugados multiplicados = primero al cuadrado menos segundo al cuadrado. Arriba: $(\sqrt{r})^{2}-2^{2} = r-4$. Abajo queda indicado:</div>
+            <div class="md">= \frac{r-4}{(r-4)(\sqrt{r}+2)} = \frac{1\cdot\hr{\cancel{(r-4)}}}{\hr{\cancel{(r-4)}}(\sqrt{r}+2)}</div></div></li>
+          <li><div><div class="txt">Al cancelar, arriba queda un <b>1</b> (el factor “invisible”):</div>
+            <div class="md">= \frac{1}{\sqrt{r}+2}</div>
+            <span class="result">Resultado: $\frac{1}{\sqrt{r}+2}$ ✓</span></div></li>
+        </ol>
+      </div>
+    </div>
+    <div class="box warn"><span class="lbl">Error frecuente (advertido en clase)</span>
+      <p>Que se cancelen los factores <b>no</b> hace que $\sqrt{r}+2$ suba. Estaba abajo y sigue abajo; arriba queda el <b>1</b>. Escribir solo $\sqrt{r}+2$ es incorrecto, y en los límites hace que el resultado quede mal.</p>
+    </div>
+
+    <div class="ex">
+      <div class="ex-h"><span>Ejemplo 5 · Racionalizar</span><small>min 50:30 – 1:00:30</small></div>
+      <div class="ex-b">
+        <div class="md">\frac{x}{\sqrt{x+2}-\sqrt{3}}</div>
+        <ol class="steps">
+          <li><div><div class="txt">Conjugado del denominador: se cambia el “−” que separa los términos (no el “+” de $x+2$):</div>
+            <div class="md">\frac{x}{\sqrt{x+2}-\sqrt{3}}\cdot\frac{\sqrt{x+2}+\sqrt{3}}{\sqrt{x+2}+\sqrt{3}} = \frac{x(\sqrt{x+2}+\sqrt{3})}{(\sqrt{x+2})^{2}-(\sqrt{3})^{2}}</div></div></li>
+          <li><div><div class="txt">Se cancelan los cuadrados con las raíces; quedan los radicandos:</div>
+            <div class="md">= \frac{x(\sqrt{x+2}+\sqrt{3})}{x+2-3}</div></div></li>
+          <li><div><div class="txt">Operamos $2-3=-1$:</div>
+            <div class="md">= \frac{x(\sqrt{x+2}+\sqrt{3})}{x-1}</div>
+            <span class="result">Resultado: $\frac{x(\sqrt{x+2}+\sqrt{3})}{x-1}$ ✓</span></div></li>
+        </ol>
+      </div>
+    </div>
+    <div class="box warn"><span class="lbl">¿Se puede cancelar la x?</span>
+      <p><b>No.</b> Abajo la $x$ está en una <b>resta</b> ($x-1$), no multiplicando. Solo se cancelan <b>factores</b> (cosas que multiplican). Ver el <a href="#m5">Módulo 5</a>.</p>
+    </div>
+  </section>
+
+  <!-- ===== Módulo 4 ===== -->
+  <section class="mod" id="m4">
+    <div class="mod-head"><span class="mod-num">Módulo 4</span><span class="mod-time">1:01:00 – 1:07:00 · 1:27:00 – 1:35:30</span></div>
+    <h2>Raíces en ambos lados</h2>
+    <p class="obj">Objetivo: decidir qué racionalizar cuando hay radicales arriba y abajo.</p>
+
+    <div class="ex">
+      <div class="ex-h"><span>Ejemplo 6 · Racionalizar el denominador</span><small>min 1:01:00 – 1:04:30</small></div>
+      <div class="ex-b">
+        <div class="md">\frac{\sqrt{x}-\sqrt{y}}{\sqrt{x}+\sqrt{y}}</div>
+        <p class="txt">Aquí ambos lados son sumas/restas de raíces, así que se puede racionalizar <b>cualquiera</b>. Si el enunciado dice cuál, se hace ese; si no dice, el que uno quiera. El profesor eligió el denominador.</p>
+        <ol class="steps">
+          <li><div><div class="md">\frac{\sqrt{x}-\sqrt{y}}{\sqrt{x}+\sqrt{y}}\cdot\frac{\sqrt{x}-\sqrt{y}}{\sqrt{x}-\sqrt{y}} = \frac{(\sqrt{x}-\sqrt{y})(\sqrt{x}-\sqrt{y})}{(\sqrt{x})^{2}-(\sqrt{y})^{2}}</div></div></li>
+          <li><div><div class="txt">Arriba hay dos binomios iguales: se escribe como un cuadrado. Abajo se cancelan los 2 con las raíces:</div>
+            <div class="md">= \frac{(\sqrt{x}-\sqrt{y})^{2}}{x-y}</div>
+            <span class="result">Resultado: $\frac{(\sqrt{x}-\sqrt{y})^{2}}{x-y}$ ✓</span></div></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="box warn"><span class="lbl">Errores que el profesor tachó en el tablero</span>
+      <ul>
+        <li>No se pueden cancelar las $x$ y $y$ de arriba (que están dentro de raíces) con las $x$ y $y$ de abajo (que están fuera): <span class="mx">\frac{(\sqrt{x}-\sqrt{y})^{2}}{x-y}</span> no se simplifica a 1 ni a $x-y$.</li>
+        <li>En $(\sqrt{x}-\sqrt{y})^{2}$ <b>no</b> se puede “cancelar el 2 con las raíces”, por culpa del <b>signo menos</b> que separa los términos. Desarrollado correctamente: $(\sqrt{x}-\sqrt{y})^{2} = x-2\sqrt{xy}+y$.</li>
+        <li>En cambio, si fuera un <b>producto</b>, sí: $(\sqrt{x}\cdot\sqrt{y})^{2} = x\cdot y$ ✓</li>
+      </ul>
+    </div>
+
+    <h3>¿Cuál racionalizo si hay raíces arriba y abajo?</h3>
+    <p>Un estudiante preguntó al final cómo saber cuál racionalizar cuando hay raíces en ambos lados. La respuesta del profesor:</p>
+    <div class="box tip"><span class="lbl">Regla</span>
+      <p>Se racionaliza <b>donde las raíces se están sumando o restando</b> (un binomio con raíz), porque ahí es donde, al multiplicar por el conjugado, se puede forzar la diferencia de cuadrados. Donde la raíz solo multiplica, no se logra ese efecto.</p>
+    </div>
+    <div class="ex">
+      <div class="ex-h"><span>Ejemplo propuesto · Racionalizar</span><small>min 1:29 y 1:33 — para practicar</small></div>
+      <div class="ex-b">
+        <div class="md">\frac{\sqrt{x}\cdot\sqrt{y}}{\sqrt{x}-\sqrt{y}}</div>
+        <p class="txt">Arriba hay un producto; abajo, una resta de raíces ⇒ se racionaliza el <b>denominador</b>. Solución (para que compares tu trabajo):</p>
+        <div class="md">\frac{\sqrt{x}\sqrt{y}}{\sqrt{x}-\sqrt{y}}\cdot\frac{\sqrt{x}+\sqrt{y}}{\sqrt{x}+\sqrt{y}} = \frac{\sqrt{x}\sqrt{y}\,(\sqrt{x}+\sqrt{y})}{x-y} = \frac{x\sqrt{y}+y\sqrt{x}}{x-y}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Módulo 5 ===== -->
+  <section class="mod" id="m5">
+    <div class="mod-head"><span class="mod-num">Módulo 5</span><span class="mod-time">55:30 – 1:00:59 · 1:05:00 – 1:07:00</span></div>
+    <h2>Reglas de simplificación</h2>
+    <p class="obj">Objetivo: “limpiar” errores del pasado. La idea del curso, en palabras del profesor: “que recordemos, pero que recordemos bien; si aprendimos algo mal, aquí lo corregimos”.</p>
+    <div class="box def"><span class="lbl">Regla de oro</span>
+      <p>Solo se cancelan <b>factores</b>: expresiones que están <b>multiplicando</b> a todo el numerador y a todo el denominador. Nunca se cancela un término que está en una <b>suma o resta</b>.</p>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Expresión</th><th>¿Se simplifica?</th><th>Por qué</th></tr></thead>
+      <tbody>
+        <tr><td><span class="mx">\frac{x\cdot a}{x\cdot b} = \frac{a}{b}</span></td><td class="hg"><b>Sí</b></td><td>La $x$ multiplica arriba y abajo (es factor).</td></tr>
+        <tr><td><span class="mx">\frac{x(\sqrt{x+2}+\sqrt{3})}{x-1}</span></td><td class="hr"><b>No</b></td><td>Abajo la $x$ está restando con 1.</td></tr>
+        <tr><td><span class="mx">\frac{x+3}{x-3}</span></td><td class="hr"><b>No</b> (≠ 1)</td><td>No son iguales; tampoco se puede “cancelar x con x y 3 con 3”.</td></tr>
+        <tr><td><span class="mx">\frac{x+3}{x+3} = 1</span></td><td class="hg"><b>Sí</b></td><td>Toda la expresión de arriba es igual a toda la de abajo.</td></tr>
+        <tr><td><span class="mx">\frac{(t-9)(\sqrt{t}+3)}{t-9} = \sqrt{t}+3</span></td><td class="hg"><b>Sí</b></td><td>$(t-9)$ es un factor completo arriba y abajo.</td></tr>
+        <tr><td><span class="mx">\frac{(\sqrt{x}-\sqrt{y})^{2}}{x-y}</span></td><td class="hr"><b>No</b></td><td>Lo de arriba está dentro de raíces y con resta.</td></tr>
+        <tr><td><span class="mx">(\sqrt{x}-\sqrt{y})^{2} \neq x-y</span></td><td class="hr"><b>No</b></td><td>El “−” impide cancelar el 2 con cada raíz.</td></tr>
+        <tr><td><span class="mx">(\sqrt{x}\cdot\sqrt{y})^{2} = xy</span></td><td class="hg"><b>Sí</b></td><td>Es un producto: el 2 cancela cada raíz.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ===== Módulo 6 ===== -->
+  <section class="mod" id="m6">
+    <div class="mod-head"><span class="mod-num">Módulo 6</span><span class="mod-time">1:07:30 – 1:24:30 · 1:29:00 – 1:33:30</span></div>
+    <h2>¿Para qué sirve? Conexión con límites</h2>
+    <p class="obj">Objetivo: entender el uso real de la racionalización en cálculo.</p>
+
+    <div class="ex">
+      <div class="ex-h"><span>Ejercicio para punto · Racionalizar el numerador</span><small>planteado 1:07:30 · corregido 1:22:15</small></div>
+      <div class="ex-b">
+        <div class="md">\frac{\sqrt{x+h}-\sqrt{x}}{h}</div>
+        <p class="txt">El profesor avisó que esta expresión “sí la van a ver” en cálculo (aparece al estudiar límites y derivadas).</p>
+        <ol class="steps">
+          <li><div><div class="md">\frac{\sqrt{x+h}-\sqrt{x}}{h}\cdot\frac{\sqrt{x+h}+\sqrt{x}}{\sqrt{x+h}+\sqrt{x}} = \frac{(\sqrt{x+h})^{2}-(\sqrt{x})^{2}}{h(\sqrt{x+h}+\sqrt{x})}</div></div></li>
+          <li><div><div class="txt">Arriba: $x+h-x$, las $x$ se cancelan:</div>
+            <div class="md">= \frac{\hr{\cancel{x}}+h\hr{\cancel{-x}}}{h(\sqrt{x+h}+\sqrt{x})} = \frac{h}{h(\sqrt{x+h}+\sqrt{x})}</div></div></li>
+          <li><div><div class="txt">Se cancela la $h$ (es factor) y arriba queda 1:</div>
+            <div class="md">= \frac{1}{\sqrt{x+h}+\sqrt{x}}</div>
+            <span class="result">Resultado: $\frac{1}{\sqrt{x+h}+\sqrt{x}}$ ✓</span></div></li>
+        </ol>
+      </div>
+    </div>
+    <div class="box warn"><span class="lbl">Errores de los estudiantes al entregarlo</span>
+      <ul>
+        <li>Quedarse un paso antes y <b>no simplificar la h</b>.</li>
+        <li>Quitar la $h$ pero <b>no escribir el 1</b> arriba — eso queda mal.</li>
+      </ul>
+      <p>Por qué importa: si esto es un límite cuando $h$ tiende a 0 y la $h$ no se quita de abajo, la expresión se queda dividiendo por 0. Racionalizar elimina esa indeterminación. (Al hacer $h\to0$ el resultado queda $\frac{1}{2\sqrt{x}}$: lo verán en cálculo.)</p>
+    </div>
+
+    <h3>Evaluar y encontrar una división por cero</h3>
+    <p>El profesor explicó que “límite cuando $x$ tiende a 9” significa, en la práctica inicial, <b>reemplazar la $x$ por 9</b>. Con el Ejemplo 3:</p>
+    <div class="md">t=9:\quad \frac{t-9}{\sqrt{t}-3} = \frac{9-9}{\sqrt{9}-3} = \frac{0}{0}\ \ (\text{indeterminado}) \qquad\text{pero}\qquad \sqrt{t}+3 = \sqrt{9}+3 = 6</div>
+    <p>Después de racionalizar, la expresión equivalente <b>sí</b> se puede evaluar. Ese es uno de los usos principales de la racionalización.</p>
+    <p>En clase también se escribió el caso $\frac{\sqrt{x}+2}{\sqrt{x}-3}$ con $x=9$: arriba $3+2=5$, abajo $3-3=0$, y en el tablero se anotó $\frac{5}{0}=\infty$.</p>
+    <div class="box note"><span class="lbl">Precisión matemática (para no confundirse después)</span>
+      <p>La división por cero no da un número. En límites, un resultado del tipo “número distinto de cero sobre 0” ($\frac{5}{0}$) indica que la expresión <b>crece sin límite</b> (tiende a $\pm\infty$); eso no se arregla racionalizando. La forma que la racionalización sí resuelve es $\frac{0}{0}$, como en el Ejemplo 3 y en el ejercicio con $h$. Lo verán con detalle en cálculo diferencial.</p>
+    </div>
+  </section>
+
+  <!-- ===== Módulo 7 ===== -->
+  <section class="mod" id="m7">
+    <div class="mod-head"><span class="mod-num">Módulo 7</span><span class="mod-time">1:36:00 – 1:53:00 · guía págs. 62–64</span></div>
+    <h2>Razones</h2>
+    <p class="obj">Tema de la guía: <i>Cálculo con números reales. Razón y proporción.</i> Subtema: magnitudes directa e inversamente proporcionales.</p>
+    <div class="chips">
+      <span class="chip">Resultado 1: resolver, a partir de proporciones, problemas con magnitudes directa e inversamente proporcionales</span>
+      <span class="chip">Resultado 2: resolver con lenguaje aritmético problemas en diversos contextos</span>
+    </div>
+    <p>Continuando con los números reales, aparecen cocientes que permiten <b>comparar magnitudes</b>. Estos cocientes se llaman <b>razones</b>.</p>
+    <div class="box def"><span class="lbl">Definición (guía)</span>
+      <p>Una <b>razón</b> es un cociente entre dos números reales positivos. Si $a, c \in \mathbb{R}^{+}$, la razón entre $a$ y $c$ se denota</p>
+      <div class="md">\frac{a}{c} = r</div>
+      <p>El número $a$ es el <b>antecedente</b>, el número $c$ es el <b>consecuente</b> y el valor $r$ se llama <b>razón</b>. Se puede expresar en forma <b>decimal</b> o <b>fraccionaria</b> (y, como verán en estadística, también como <b>porcentaje</b>).</p>
+    </div>
+    <div class="box tip"><span class="lbl">Truco del profesor</span>
+      <p>Las letras ayudan: <b>a</b> de <b>a</b>ntecedente (arriba), <b>c</b> de <b>c</b>onsecuente (abajo).</p>
+    </div>
+    <div class="box prof"><span class="lbl">Adelanto</span>
+      <p>Más adelante oirán “razón de cambio” o “rata de cambio”: también es una razón (una división) y es una forma de hablar de la <b>derivada</b>.</p>
+    </div>
+
+    <div class="ex">
+      <div class="ex-h"><span>Ejemplo 1 (guía)</span><small>min 1:40:50</small></div>
+      <div class="ex-b">
+        <p>En un salón de 70 estudiantes, 37 son mujeres y el resto son hombres.</p>
+        <ol class="steps">
+          <li><div><div class="txt">Hombres: $70-37 = 33$ (comprobación: $33+37=70$).</div></div></li>
+          <li><div><div class="txt">Razón que representa a los hombres: $\frac{33}{70}$ → 33 de los 70 estudiantes son hombres.</div>
+            <div class="txt">Razón de mujeres: $\frac{37}{70}$ → 37 de los 70 son mujeres.</div></div></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="ex">
+      <div class="ex-h"><span>Ejercicio 1 (guía) · Responde de acuerdo al concepto de razón</span><small>min 1:42:58 – 1:53:00</small></div>
+      <div class="ex-b">
+        <ol class="steps">
+          <li><div><b>Razón 0,5; antecedente 4. Halle el consecuente.</b>
+            <div class="md">\frac{4}{c}=0{,}5 \;\Rightarrow\; 4 = 0{,}5\,c \;\Rightarrow\; c=\frac{4}{0{,}5} = \frac{4}{\frac{1}{2}} = 8</div>
+            <div class="txt">La $c$ multiplica a 0,5, entonces “pasa a dividir”. Dividir entre 0,5 (un medio) es multiplicar por 2.</div>
+            <span class="result">c = 8</span></div></li>
+          <li><div><b>Razón 0,5; consecuente 4. Halle el antecedente.</b>
+            <div class="md">\frac{a}{4}=0{,}5 \;\Rightarrow\; a = 0{,}5\cdot 4 = 2</div>
+            <span class="result">a = 2</span></div></li>
+          <li><div><b>Empresa de 250 empleados: 30 en la sección administrativa, 58 en operarios y el resto impulsadores. Escribe la razón de cada sección.</b> (Quedó para practicar; solución con los datos de la guía.)
+            <div class="md">\text{Impulsadores: } 250-30-58 = 162</div>
+            <div class="tbl-wrap"><table>
+              <thead><tr><th>Sección</th><th>Razón</th><th>Simplificada</th><th>Decimal</th></tr></thead>
+              <tbody>
+                <tr><td>Administrativa</td><td><span class="mx">\frac{30}{250}</span></td><td><span class="mx">\frac{3}{25}</span></td><td>0,12 (12 %)</td></tr>
+                <tr><td>Operarios</td><td><span class="mx">\frac{58}{250}</span></td><td><span class="mx">\frac{29}{125}</span></td><td>0,232 (23,2 %)</td></tr>
+                <tr><td>Impulsadores</td><td><span class="mx">\frac{162}{250}</span></td><td><span class="mx">\frac{81}{125}</span></td><td>0,648 (64,8 %)</td></tr>
+              </tbody>
+            </table></div>
+            <div class="txt">Verificación: $0{,}12+0{,}232+0{,}648 = 1$. (En el audio el número de operarios se oye poco claro; se usa el 58 que aparece escrito en la guía.)</div></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Módulo 8 ===== -->
+  <section class="mod" id="m8">
+    <div class="mod-head"><span class="mod-num">Módulo 8</span><span class="mod-time">1:53:00 – 1:55:00 · lectura para la próxima clase</span></div>
+    <h2>Proporciones</h2>
+    <p>Con una razón se comparan magnitudes; con <b>dos razones</b> se pueden resolver problemas que comparan dos magnitudes donde una es desconocida, en un mismo escenario.</p>
+    <div class="box def"><span class="lbl">Definición (guía)</span>
+      <p>La <b>igualdad entre dos razones</b> es una <b>proporción</b>. Si $\frac{a}{b}$ y $\frac{c}{d}$ son razones y</p>
+      <div class="md">\frac{a}{b} = \frac{c}{d}</div>
+      <p>a esta igualdad se le llama proporción. Los valores $a$ y $d$ son los <b>extremos</b>; los valores $b$ y $c$ son los <b>medios</b>.</p>
+    </div>
+    <div class="box tip"><span class="lbl">Cómo verificar si es proporción</span>
+      <p>Multiplicar los extremos y multiplicar los medios. Si los resultados son iguales, es una proporción:</p>
+      <div class="md">a\cdot d = b\cdot c</div>
+    </div>
+    <div class="ex">
+      <div class="ex-h"><span>Ejemplo 2 (guía)</span><small>visto en pantalla</small></div>
+      <div class="ex-b">
+        <p>Las razones $\frac{1}{2}$ y $\frac{5}{10}$ forman una proporción, porque</p>
+        <div class="md">\frac{1}{2} = 0{,}5 \qquad \frac{5}{10} = 0{,}5</div>
+        <p>Las dos razones son iguales en resultado, así que $\frac{1}{2} = \frac{5}{10}$ es una proporción. Con extremos y medios: $1\cdot10 = 10$ y $2\cdot5 = 10$ ✓.</p>
+      </div>
+    </div>
+    <div class="box note"><span class="lbl">Lo que sigue</span>
+      <p>Al inicio de la clase el profesor anunció que en este tema se verán aplicaciones como la <b>regla de tres simple y compuesta</b> y las magnitudes <b>directa e inversamente proporcionales</b>, sin quedarse demasiadas clases ahí.</p>
+    </div>
+  </section>
+
+  <!-- ===== Resumen ===== -->
+  <section class="mod" id="m9">
+    <div class="mod-head"><span class="mod-num">Cierre</span></div>
+    <h2>Resumen y pendientes</h2>
+    <h3>En una sola mirada</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Ejercicio</th><th>Se racionaliza</th><th>Multiplicar por</th><th>Resultado</th></tr></thead>
+      <tbody>
+        <tr><td><span class="mx">\frac{3}{1+\sqrt{7}}</span></td><td>Denominador</td><td><span class="mx">1-\sqrt{7}</span></td><td><span class="mx">\frac{\sqrt{7}-1}{2}</span></td></tr>
+        <tr><td><span class="mx">\frac{\sqrt{11}-\sqrt{5}}{3}</span></td><td>Numerador</td><td><span class="mx">\sqrt{11}+\sqrt{5}</span></td><td><span class="mx">\frac{2}{\sqrt{11}+\sqrt{5}}</span></td></tr>
+        <tr><td><span class="mx">\frac{t-9}{\sqrt{t}-3}</span></td><td>Denominador</td><td><span class="mx">\sqrt{t}+3</span></td><td><span class="mx">\sqrt{t}+3</span></td></tr>
+        <tr><td><span class="mx">\frac{\sqrt{r}-2}{r-4}</span></td><td>Numerador</td><td><span class="mx">\sqrt{r}+2</span></td><td><span class="mx">\frac{1}{\sqrt{r}+2}</span></td></tr>
+        <tr><td><span class="mx">\frac{x}{\sqrt{x+2}-\sqrt{3}}</span></td><td>Denominador</td><td><span class="mx">\sqrt{x+2}+\sqrt{3}</span></td><td><span class="mx">\frac{x(\sqrt{x+2}+\sqrt{3})}{x-1}</span></td></tr>
+        <tr><td><span class="mx">\frac{\sqrt{x}-\sqrt{y}}{\sqrt{x}+\sqrt{y}}</span></td><td>Denominador (cualquiera)</td><td><span class="mx">\sqrt{x}-\sqrt{y}</span></td><td><span class="mx">\frac{(\sqrt{x}-\sqrt{y})^{2}}{x-y}</span></td></tr>
+        <tr><td><span class="mx">\frac{\sqrt{x+h}-\sqrt{x}}{h}</span></td><td>Numerador</td><td><span class="mx">\sqrt{x+h}+\sqrt{x}</span></td><td><span class="mx">\frac{1}{\sqrt{x+h}+\sqrt{x}}</span></td></tr>
+      </tbody>
+    </table></div>
+    <h3>Pendientes que dejó la clase</h3>
+    <ul>
+      <li>Resolver el punto 3 del Ejercicio 1 de razones (empresa de 250 empleados).</li>
+      <li>Leer la parte de <b>proporción</b> de la guía (extremos, medios y su verificación) para la próxima clase.</li>
+      <li>Practicar el ejercicio $\frac{\sqrt{x}\cdot\sqrt{y}}{\sqrt{x}-\sqrt{y}}$ (raíces en ambos lados).</li>
+      <li>Quien llegó tarde: revisar la grabación y el documento de la clase que el profesor compartió.</li>
+    </ul>
+    <p><a href="#" data-goto="examen"><b>Ahora sí: ir al examen de práctica →</b></a></p>
+  </section>
+
+  </main>
+</div>
+</div>
+
+<!-- =================================================================== -->
+<!-- ======================  SECCIÓN 2: EXAMEN  ========================= -->
+<!-- =================================================================== -->
+<div class="wrap hidden" id="examen" role="tabpanel" aria-labelledby="t-examen">
+<div class="exam">
+  <div class="exam-intro">
+    <h2>Examen de práctica</h2>
+    <p>Preguntas de selección múltiple sobre todos los temas de la clase. Marca una opción en cada pregunta y pulsa <b>Entregar respuestas</b>. Verás cuáles acertaste, la respuesta correcta y la explicación de cada una. Puedes reintentar cuantas veces quieras.</p>
+  </div>
+
+  <div id="summary" aria-live="polite"></div>
+
+  <div class="progress"><div class="bar"><span id="bar"></span></div><div class="count" id="count">0 / 0 respondidas</div></div>
+
+  <form id="quiz" novalidate>
+
+  <!-- Q1 -->
+  <div class="q" data-answer="b" data-mod="Fundamentos">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">¿Qué significa <b>racionalizar</b> una expresión como las vistas en clase?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q1" value="a"><span class="k">A</span><span>Convertir todos los números de la expresión en números racionales.</span></label>
+      <label class="opt"><input type="radio" name="q1" value="b"><span class="k">B</span><span>Eliminar los radicales del numerador o del denominador (según se pida) multiplicando por una expresión adecuada.</span></label>
+      <label class="opt"><input type="radio" name="q1" value="c"><span class="k">C</span><span>Eliminar todas las raíces de la expresión, tanto arriba como abajo.</span></label>
+      <label class="opt"><input type="radio" name="q1" value="d"><span class="k">D</span><span>Elevar al cuadrado el numerador y el denominador.</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">Racionalizar no transforma los números en racionales; se refiere a quitar radicales de una parte específica de la fracción.</p>
+      <p class="why" data-for="c">No siempre desaparecen todas las raíces: muchas veces la raíz “pasa al otro lado”, y eso es correcto (Ej. 1 y 2).</p>
+      <p class="why" data-for="d">Elevar al cuadrado cambiaría el valor de la expresión. Lo que se hace es multiplicar por conjugado/conjugado, que vale 1.</p>
+      <p><span class="lbl">Explicación: </span>Racionalizar es eliminar los radicales del numerador o del denominador, según lo que pida el ejercicio. Se logra multiplicando arriba y abajo por el conjugado.</p>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q" data-answer="c" data-mod="Fundamentos">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">¿Cuál es el conjugado de $\sqrt{x+2}-\sqrt{3}$?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q2" value="a"><span class="k">A</span><span>$\sqrt{x-2}+\sqrt{3}$</span></label>
+      <label class="opt"><input type="radio" name="q2" value="b"><span class="k">B</span><span>$\sqrt{x-2}-\sqrt{3}$</span></label>
+      <label class="opt"><input type="radio" name="q2" value="c"><span class="k">C</span><span>$\sqrt{x+2}+\sqrt{3}$</span></label>
+      <label class="opt"><input type="radio" name="q2" value="d"><span class="k">D</span><span>$-\sqrt{x+2}-\sqrt{3}$</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">Este es justo el error que se preguntó en clase: el signo dentro del radicando ($x+2$) <b>no</b> se cambia.</p>
+      <p class="why" data-for="b">Cambiaste el signo equivocado: se cambió el de dentro de la raíz y se dejó igual el que separa los términos.</p>
+      <p class="why" data-for="d">Eso es el opuesto de toda la expresión (multiplicarla por −1), no su conjugado.</p>
+      <p><span class="lbl">Explicación: </span>El conjugado es la misma expresión cambiando solo el signo que separa los dos términos: el “−” pasa a “+”. Por eso es $\sqrt{x+2}+\sqrt{3}$.</p>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q" data-answer="a" data-mod="Fundamentos">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">Al multiplicar una fracción por $\frac{1-\sqrt{7}}{1-\sqrt{7}}$, ¿por qué no se altera el ejercicio?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q3" value="a"><span class="k">A</span><span>Porque esa fracción vale 1, y multiplicar por 1 no cambia el valor.</span></label>
+      <label class="opt"><input type="radio" name="q3" value="b"><span class="k">B</span><span>Porque $1-\sqrt{7}$ es un número positivo.</span></label>
+      <label class="opt"><input type="radio" name="q3" value="c"><span class="k">C</span><span>Sí se altera, pero después se corrige al simplificar.</span></label>
+      <label class="opt"><input type="radio" name="q3" value="d"><span class="k">D</span><span>Porque las raíces se cancelan entre sí inmediatamente.</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="b">De hecho $1-\sqrt{7}$ es negativo (≈ −1,65). El signo no es la razón: lo que importa es que es la misma cantidad arriba y abajo.</p>
+      <p class="why" data-for="c">No se altera en ningún momento: todas las expresiones del procedimiento son equivalentes.</p>
+      <p class="why" data-for="d">Las raíces se cancelan después, al hacer la distributiva; eso no explica por qué el valor no cambia.</p>
+      <p><span class="lbl">Explicación: </span>Cualquier cantidad (distinta de cero) dividida entre sí misma es 1. El profesor lo recalcó: “no es que uno esté alterando el ejercicio, está aplicando la estrategia”.</p>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q" data-answer="d" data-mod="Fundamentos">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">¿Cuánto es $(\sqrt{7})^{2}$, que aparece al racionalizar $\frac{3}{1+\sqrt{7}}$?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q4" value="a"><span class="k">A</span><span>49</span></label>
+      <label class="opt"><input type="radio" name="q4" value="b"><span class="k">B</span><span>$2\sqrt{7}$</span></label>
+      <label class="opt"><input type="radio" name="q4" value="c"><span class="k">C</span><span>14</span></label>
+      <label class="opt"><input type="radio" name="q4" value="d"><span class="k">D</span><span>7</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">49 sería $7^{2}$. Aquí se eleva al cuadrado la raíz de 7, no el 7.</p>
+      <p class="why" data-for="b">Elevar al cuadrado no es multiplicar por 2.</p>
+      <p class="why" data-for="c">14 sería $7\cdot2$; el exponente no multiplica la base.</p>
+      <p><span class="lbl">Explicación: </span>El exponente 2 cancela la raíz cuadrada y queda lo que está adentro: $(\sqrt{7})^{2} = \sqrt{7}\cdot\sqrt{7} = 7$.</p>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q" data-answer="c" data-mod="Con números">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">Al racionalizar el denominador de $\frac{3}{1+\sqrt{7}}$, ¿cuál es el resultado final?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q5" value="a"><span class="k">A</span><span>$\frac{1-\sqrt{7}}{2}$</span></label>
+      <label class="opt"><input type="radio" name="q5" value="b"><span class="k">B</span><span>$\frac{\sqrt{7}+1}{2}$</span></label>
+      <label class="opt"><input type="radio" name="q5" value="c"><span class="k">C</span><span>$\frac{\sqrt{7}-1}{2}$</span></label>
+      <label class="opt"><input type="radio" name="q5" value="d"><span class="k">D</span><span>$\frac{3(1-\sqrt{7})}{6}$</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">Se perdió el signo: el denominador era $1-7=-6$, negativo. $\frac{1-\sqrt{7}}{-2}$ no es lo mismo que $\frac{1-\sqrt{7}}{2}$.</p>
+      <p class="why" data-for="b">El signo de la raíz no cambia a “+”: al subir el “−” se obtiene $-(1-\sqrt{7}) = \sqrt{7}-1$.</p>
+      <p class="why" data-for="d">El denominador es $1-7 = -6$, no $+6$, y además falta simplificar.</p>
+      <p><span class="lbl">Explicación: </span>$\frac{3(1-\sqrt{7})}{1-7} = \frac{3(1-\sqrt{7})}{-6} = \frac{1-\sqrt{7}}{-2}$. Subiendo el “−”: $\frac{-(1-\sqrt{7})}{2} = \frac{\sqrt{7}-1}{2}$.</p>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q" data-answer="b" data-mod="Con números">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">En $\frac{3(1-\sqrt{7})}{(1+\sqrt{7})(1-\sqrt{7})}$, ¿dónde es necesario hacer la propiedad distributiva?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q6" value="a"><span class="k">A</span><span>Arriba y abajo, siempre.</span></label>
+      <label class="opt"><input type="radio" name="q6" value="b"><span class="k">B</span><span>Solo abajo, donde están los dos paréntesis con los mismos términos y signo contrario.</span></label>
+      <label class="opt"><input type="radio" name="q6" value="c"><span class="k">C</span><span>Solo arriba, porque el 3 multiplica.</span></label>
+      <label class="opt"><input type="radio" name="q6" value="d"><span class="k">D</span><span>En ningún lado; se cancelan directamente los paréntesis.</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">Hacerlo arriba no está prohibido, pero no es necesario y puede impedir ver factores que luego se cancelan (como en el Ej. 3).</p>
+      <p class="why" data-for="c">Es al revés: arriba se deja indicado.</p>
+      <p class="why" data-for="d">$(1+\sqrt{7})$ y $(1-\sqrt{7})$ no son iguales, no se pueden cancelar; hay que multiplicarlos.</p>
+      <p><span class="lbl">Explicación: </span>La distributiva se hace solo donde aparecen los conjugados, porque ahí se forma la diferencia de cuadrados que elimina las raíces. El otro lado se deja indicado.</p>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q" data-answer="a" data-mod="Con números">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">Racionaliza el <b>numerador</b> de $\frac{\sqrt{11}-\sqrt{5}}{3}$.</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q7" value="a"><span class="k">A</span><span>$\frac{2}{\sqrt{11}+\sqrt{5}}$</span></label>
+      <label class="opt"><input type="radio" name="q7" value="b"><span class="k">B</span><span>$\frac{6}{\sqrt{11}+\sqrt{5}}$</span></label>
+      <label class="opt"><input type="radio" name="q7" value="c"><span class="k">C</span><span>$\frac{2}{\sqrt{11}-\sqrt{5}}$</span></label>
+      <label class="opt"><input type="radio" name="q7" value="d"><span class="k">D</span><span>$2$</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="b">Falta simplificar: abajo hay un 3 multiplicando, y $\frac{6}{3}=2$.</p>
+      <p class="why" data-for="c">Abajo queda el conjugado por el que multiplicamos, $\sqrt{11}+\sqrt{5}$, no la expresión original.</p>
+      <p class="why" data-for="d">La raíz no desaparece: pasa al denominador.</p>
+      <p><span class="lbl">Explicación: </span>$\frac{(\sqrt{11})^{2}-(\sqrt{5})^{2}}{3(\sqrt{11}+\sqrt{5})} = \frac{11-5}{3(\sqrt{11}+\sqrt{5})} = \frac{6}{3(\sqrt{11}+\sqrt{5})} = \frac{2}{\sqrt{11}+\sqrt{5}}$.</p>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q" data-answer="d" data-mod="Con variables">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">Racionaliza $\frac{t-9}{\sqrt{t}-3}$ y simplifica.</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q8" value="a"><span class="k">A</span><span>$\sqrt{t}-3$</span></label>
+      <label class="opt"><input type="radio" name="q8" value="b"><span class="k">B</span><span>$\frac{1}{\sqrt{t}+3}$</span></label>
+      <label class="opt"><input type="radio" name="q8" value="c"><span class="k">C</span><span>$\frac{(t-9)(\sqrt{t}+3)}{t+9}$</span></label>
+      <label class="opt"><input type="radio" name="q8" value="d"><span class="k">D</span><span>$\sqrt{t}+3$</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">Se multiplica por el conjugado $\sqrt{t}+3$, y es ese factor el que sobrevive arriba.</p>
+      <p class="why" data-for="b">Aquí el factor $(t-9)$ estaba <b>arriba</b>; tras cancelar, $\sqrt{t}+3$ queda arriba y abajo no queda nada (es 1).</p>
+      <p class="why" data-for="c">Abajo es $(\sqrt{t})^{2} - 3^{2} = t-9$, no $t+9$.</p>
+      <p><span class="lbl">Explicación: </span>$\frac{(t-9)(\sqrt{t}+3)}{(\sqrt{t})^{2}-9} = \frac{(t-9)(\sqrt{t}+3)}{t-9} = \sqrt{t}+3$. Por eso no se distribuye arriba: el factor $(t-9)$ se cancela.</p>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q" data-answer="b" data-mod="Con variables">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">Racionaliza el numerador de $\frac{\sqrt{r}-2}{r-4}$.</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q9" value="a"><span class="k">A</span><span>$\sqrt{r}+2$</span></label>
+      <label class="opt"><input type="radio" name="q9" value="b"><span class="k">B</span><span>$\frac{1}{\sqrt{r}+2}$</span></label>
+      <label class="opt"><input type="radio" name="q9" value="c"><span class="k">C</span><span>$\frac{r-4}{\sqrt{r}+2}$</span></label>
+      <label class="opt"><input type="radio" name="q9" value="d"><span class="k">D</span><span>$\frac{1}{\sqrt{r}-2}$</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">Es el error que el profesor advirtió: al cancelar $(r-4)$, el $\sqrt{r}+2$ <b>no sube</b>. Arriba queda un 1.</p>
+      <p class="why" data-for="c">Faltó cancelar: $(r-4)$ está arriba y abajo como factor.</p>
+      <p class="why" data-for="d">Abajo queda el conjugado $\sqrt{r}+2$, no la expresión original.</p>
+      <p><span class="lbl">Explicación: </span>$\frac{(\sqrt{r})^{2}-4}{(r-4)(\sqrt{r}+2)} = \frac{1\cdot(r-4)}{(r-4)(\sqrt{r}+2)} = \frac{1}{\sqrt{r}+2}$.</p>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q" data-answer="c" data-mod="Con variables">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">Racionaliza $\frac{x}{\sqrt{x+2}-\sqrt{3}}$.</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q10" value="a"><span class="k">A</span><span>$\sqrt{x+2}+\sqrt{3}$</span></label>
+      <label class="opt"><input type="radio" name="q10" value="b"><span class="k">B</span><span>$\frac{x(\sqrt{x+2}+\sqrt{3})}{x+5}$</span></label>
+      <label class="opt"><input type="radio" name="q10" value="c"><span class="k">C</span><span>$\frac{x(\sqrt{x+2}+\sqrt{3})}{x-1}$</span></label>
+      <label class="opt"><input type="radio" name="q10" value="d"><span class="k">D</span><span>$\frac{\sqrt{x+2}+\sqrt{3}}{-1}$</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">Para obtener esto habría que cancelar la $x$ de arriba con la de $x-1$, y eso no se puede.</p>
+      <p class="why" data-for="b">Abajo es una resta de cuadrados: $(x+2)-3$, no $(x+2)+3$.</p>
+      <p class="why" data-for="d">Se “canceló” la $x$ de arriba con la de abajo, pero abajo la $x$ está restando: no es factor.</p>
+      <p><span class="lbl">Explicación: </span>$\frac{x(\sqrt{x+2}+\sqrt{3})}{(\sqrt{x+2})^{2}-(\sqrt{3})^{2}} = \frac{x(\sqrt{x+2}+\sqrt{3})}{x+2-3} = \frac{x(\sqrt{x+2}+\sqrt{3})}{x-1}$.</p>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q" data-answer="a" data-mod="Simplificación">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">¿Es correcto simplificar $\frac{x+3}{x-3} = 1$?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q11" value="a"><span class="k">A</span><span>No: las $x$ están sumando/restando, no son factores; además arriba y abajo no son iguales.</span></label>
+      <label class="opt"><input type="radio" name="q11" value="b"><span class="k">B</span><span>Sí: se cancela $x$ con $x$ y 3 con 3.</span></label>
+      <label class="opt"><input type="radio" name="q11" value="c"><span class="k">C</span><span>Sí, siempre que $x$ sea positivo.</span></label>
+      <label class="opt"><input type="radio" name="q11" value="d"><span class="k">D</span><span>No, el resultado correcto es $-1$.</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="b">Es exactamente lo que el profesor tachó en el tablero: no se cancelan términos de sumas o restas.</p>
+      <p class="why" data-for="c">El signo de $x$ no cambia nada: con $x=5$, $\frac{8}{2}=4\neq1$.</p>
+      <p class="why" data-for="d">Tampoco: con $x=5$ da 4. La expresión no se simplifica.</p>
+      <p><span class="lbl">Explicación: </span>Solo se cancelan factores (cosas que multiplican). $\frac{x+3}{x-3}$ no se simplifica. Solo si arriba y abajo fueran idénticos, como $\frac{x+3}{x+3}$, el resultado sería 1.</p>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q" data-answer="c" data-mod="Ambos lados">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">Al racionalizar el denominador de $\frac{\sqrt{x}-\sqrt{y}}{\sqrt{x}+\sqrt{y}}$ se obtiene:</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q12" value="a"><span class="k">A</span><span>1</span></label>
+      <label class="opt"><input type="radio" name="q12" value="b"><span class="k">B</span><span>$\frac{x-y}{x-y}$</span></label>
+      <label class="opt"><input type="radio" name="q12" value="c"><span class="k">C</span><span>$\frac{(\sqrt{x}-\sqrt{y})^{2}}{x-y}$</span></label>
+      <label class="opt"><input type="radio" name="q12" value="d"><span class="k">D</span><span>$\frac{(\sqrt{x}-\sqrt{y})^{2}}{x+y}$</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">Sería “cancelar” lo de dentro de las raíces con lo de afuera, cosa que no se puede.</p>
+      <p class="why" data-for="b">$(\sqrt{x}-\sqrt{y})^{2}$ no es $x-y$: el signo menos impide cancelar el 2 con cada raíz.</p>
+      <p class="why" data-for="d">Abajo queda una diferencia: $(\sqrt{x})^{2}-(\sqrt{y})^{2} = x-y$.</p>
+      <p><span class="lbl">Explicación: </span>Se multiplica por $\frac{\sqrt{x}-\sqrt{y}}{\sqrt{x}-\sqrt{y}}$. Arriba quedan dos binomios iguales, $(\sqrt{x}-\sqrt{y})^{2}$; abajo, $x-y$.</p>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q" data-answer="b" data-mod="Ambos lados">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">¿Cuál de estas igualdades es <b>correcta</b>?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q13" value="a"><span class="k">A</span><span>$(\sqrt{x}-\sqrt{y})^{2} = x-y$</span></label>
+      <label class="opt"><input type="radio" name="q13" value="b"><span class="k">B</span><span>$(\sqrt{x}\cdot\sqrt{y})^{2} = x\cdot y$</span></label>
+      <label class="opt"><input type="radio" name="q13" value="c"><span class="k">C</span><span>$(\sqrt{x}+\sqrt{y})^{2} = x+y$</span></label>
+      <label class="opt"><input type="radio" name="q13" value="d"><span class="k">D</span><span>$\sqrt{x}-\sqrt{y} = \sqrt{x-y}$</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">Con una resta no se puede cancelar el 2 con cada raíz. En realidad $(\sqrt{x}-\sqrt{y})^{2} = x-2\sqrt{xy}+y$.</p>
+      <p class="why" data-for="c">Igual que con la resta: falta el término del medio, $(\sqrt{x}+\sqrt{y})^{2} = x+2\sqrt{xy}+y$.</p>
+      <p class="why" data-for="d">La raíz no se distribuye en restas: con $x=25$, $y=9$: $5-3=2$, pero $\sqrt{16}=4$.</p>
+      <p><span class="lbl">Explicación: </span>Cuando las raíces se <b>multiplican</b>, el cuadrado sí cancela cada raíz: $(\sqrt{x}\cdot\sqrt{y})^{2} = (\sqrt{x})^{2}(\sqrt{y})^{2} = xy$. Esto lo mostró el profesor como el caso que sí funciona.</p>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q" data-answer="d" data-mod="Ambos lados">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">En $\frac{\sqrt{x}\cdot\sqrt{y}}{\sqrt{x}-\sqrt{y}}$ hay raíces arriba y abajo. ¿Qué conviene racionalizar?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q14" value="a"><span class="k">A</span><span>El numerador, porque tiene dos raíces.</span></label>
+      <label class="opt"><input type="radio" name="q14" value="b"><span class="k">B</span><span>Ambos, uno después del otro.</span></label>
+      <label class="opt"><input type="radio" name="q14" value="c"><span class="k">C</span><span>Cualquiera de los dos da el mismo efecto.</span></label>
+      <label class="opt"><input type="radio" name="q14" value="d"><span class="k">D</span><span>El denominador, porque ahí las raíces se están restando.</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">Arriba las raíces se multiplican: no hay binomio con el cual forzar una diferencia de cuadrados.</p>
+      <p class="why" data-for="b">No es necesario ni útil: el objetivo es quitar las raíces del lado donde se suman o restan.</p>
+      <p class="why" data-for="c">Eso aplica cuando ambos lados son sumas/restas de raíces (como el Ej. 6), no aquí.</p>
+      <p><span class="lbl">Explicación: </span>Regla de la clase: se racionaliza donde las raíces se suman o restan, porque ahí el conjugado produce la diferencia de cuadrados. Resultado: $\frac{\sqrt{x}\sqrt{y}(\sqrt{x}+\sqrt{y})}{x-y}$.</p>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q" data-answer="a" data-mod="Límites">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">Ejercicio para punto: racionaliza el numerador de $\frac{\sqrt{x+h}-\sqrt{x}}{h}$.</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q15" value="a"><span class="k">A</span><span>$\frac{1}{\sqrt{x+h}+\sqrt{x}}$</span></label>
+      <label class="opt"><input type="radio" name="q15" value="b"><span class="k">B</span><span>$\frac{h}{h(\sqrt{x+h}+\sqrt{x})}$</span></label>
+      <label class="opt"><input type="radio" name="q15" value="c"><span class="k">C</span><span>$\sqrt{x+h}+\sqrt{x}$</span></label>
+      <label class="opt"><input type="radio" name="q15" value="d"><span class="k">D</span><span>$\frac{2x+h}{h(\sqrt{x+h}+\sqrt{x})}$</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="b">Es correcto pero incompleto: es el “paso anterior” en que se quedaron algunos estudiantes. Falta cancelar la $h$.</p>
+      <p class="why" data-for="c">Se canceló la $h$ pero se olvidó el 1 de arriba: el profesor dijo que así “queda mala”.</p>
+      <p class="why" data-for="d">Arriba es una resta: $(x+h)-x = h$. Las $x$ se cancelan, no se suman.</p>
+      <p><span class="lbl">Explicación: </span>$\frac{(x+h)-x}{h(\sqrt{x+h}+\sqrt{x})} = \frac{h}{h(\sqrt{x+h}+\sqrt{x})} = \frac{1}{\sqrt{x+h}+\sqrt{x}}$. Así, cuando $h$ tiende a 0, ya no se divide por cero.</p>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q" data-answer="c" data-mod="Límites">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">Si reemplazas $t=9$ en $\frac{t-9}{\sqrt{t}-3}$ obtienes $\frac{0}{0}$. ¿Qué valor da la expresión racionalizada en $t=9$?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q16" value="a"><span class="k">A</span><span>0</span></label>
+      <label class="opt"><input type="radio" name="q16" value="b"><span class="k">B</span><span>3</span></label>
+      <label class="opt"><input type="radio" name="q16" value="c"><span class="k">C</span><span>6</span></label>
+      <label class="opt"><input type="radio" name="q16" value="d"><span class="k">D</span><span>Sigue siendo indeterminado</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">$\frac{0}{0}$ no vale 0; es indeterminado. Hay que evaluar la expresión simplificada.</p>
+      <p class="why" data-for="b">Faltó sumar el 3: $\sqrt{9}+3$, no solo $\sqrt{9}$.</p>
+      <p class="why" data-for="d">Precisamente racionalizar elimina la indeterminación: la expresión equivalente $\sqrt{t}+3$ ya no divide por cero.</p>
+      <p><span class="lbl">Explicación: </span>Racionalizada, la expresión es $\sqrt{t}+3$, y en $t=9$: $\sqrt{9}+3 = 3+3 = 6$. Este es el uso de la racionalización en límites que anticipó el profesor.</p>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q" data-answer="b" data-mod="Razones">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">En la razón $\frac{a}{c} = r$, ¿cómo se llaman $a$ y $c$?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q17" value="a"><span class="k">A</span><span>$a$: consecuente; $c$: antecedente.</span></label>
+      <label class="opt"><input type="radio" name="q17" value="b"><span class="k">B</span><span>$a$: antecedente; $c$: consecuente.</span></label>
+      <label class="opt"><input type="radio" name="q17" value="c"><span class="k">C</span><span>$a$: extremo; $c$: medio.</span></label>
+      <label class="opt"><input type="radio" name="q17" value="d"><span class="k">D</span><span>$a$: razón; $c$: proporción.</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">Está invertido. Truco: <b>a</b> de antecedente, <b>c</b> de consecuente.</p>
+      <p class="why" data-for="c">Extremos y medios son términos de una <b>proporción</b> (igualdad de dos razones), no de una sola razón.</p>
+      <p class="why" data-for="d">La razón es el valor $r$ (el resultado de la división).</p>
+      <p><span class="lbl">Explicación: </span>Según la guía: $a$ es el antecedente, $c$ el consecuente y $r$ la razón, que puede escribirse en forma decimal o fraccionaria.</p>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q" data-answer="d" data-mod="Razones">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">Una razón vale 0,5 y el antecedente es 4. ¿Cuál es el consecuente?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q18" value="a"><span class="k">A</span><span>2</span></label>
+      <label class="opt"><input type="radio" name="q18" value="b"><span class="k">B</span><span>4,5</span></label>
+      <label class="opt"><input type="radio" name="q18" value="c"><span class="k">C</span><span>0,125</span></label>
+      <label class="opt"><input type="radio" name="q18" value="d"><span class="k">D</span><span>8</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">2 sería el antecedente si el <b>consecuente</b> fuera 4 (punto 2 del ejercicio). Aquí el 4 está arriba.</p>
+      <p class="why" data-for="b">Una razón es una división, no una suma.</p>
+      <p class="why" data-for="c">Eso es $\frac{0{,}5}{4}$: se invirtió la división al despejar.</p>
+      <p><span class="lbl">Explicación: </span>$\frac{4}{c} = 0{,}5 \Rightarrow 4 = 0{,}5\,c \Rightarrow c = \frac{4}{0{,}5} = 8$. Dividir entre un medio es multiplicar por 2.</p>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q" data-answer="a" data-mod="Razones">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">Una razón vale 0,5 y el consecuente es 4. ¿Cuál es el antecedente?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q19" value="a"><span class="k">A</span><span>2</span></label>
+      <label class="opt"><input type="radio" name="q19" value="b"><span class="k">B</span><span>8</span></label>
+      <label class="opt"><input type="radio" name="q19" value="c"><span class="k">C</span><span>3,5</span></label>
+      <label class="opt"><input type="radio" name="q19" value="d"><span class="k">D</span><span>0,5</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="b">8 es el consecuente del punto anterior; aquí el 4 está abajo, así que se multiplica, no se divide.</p>
+      <p class="why" data-for="c">Una razón no es una resta.</p>
+      <p class="why" data-for="d">0,5 es el valor de la razón, no el antecedente.</p>
+      <p><span class="lbl">Explicación: </span>$\frac{a}{4} = 0{,}5 \Rightarrow a = 0{,}5\cdot4 = 2$. Comprobación: $\frac{2}{4} = 0{,}5$ ✓.</p>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q" data-answer="c" data-mod="Razones">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">En un salón de 70 estudiantes, 37 son mujeres y el resto hombres. ¿Qué razón representa la cantidad de hombres?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q20" value="a"><span class="k">A</span><span>$\frac{37}{70}$</span></label>
+      <label class="opt"><input type="radio" name="q20" value="b"><span class="k">B</span><span>$\frac{33}{37}$</span></label>
+      <label class="opt"><input type="radio" name="q20" value="c"><span class="k">C</span><span>$\frac{33}{70}$</span></label>
+      <label class="opt"><input type="radio" name="q20" value="d"><span class="k">D</span><span>$\frac{70}{33}$</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">Esa es la razón de las <b>mujeres</b>.</p>
+      <p class="why" data-for="b">Esa compara hombres con mujeres; la pregunta pide hombres respecto al total.</p>
+      <p class="why" data-for="d">Está invertida: el total va en el consecuente (abajo).</p>
+      <p><span class="lbl">Explicación: </span>Hombres $= 70-37 = 33$. La razón es $\frac{33}{70}$: 33 de los 70 estudiantes son hombres.</p>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="q" data-answer="b" data-mod="Razones">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">Una empresa tiene 250 empleados: 30 administrativos, 58 operarios y el resto impulsadores. ¿Qué razón representa a los impulsadores?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q21" value="a"><span class="k">A</span><span>$\frac{88}{250}$</span></label>
+      <label class="opt"><input type="radio" name="q21" value="b"><span class="k">B</span><span>$\frac{162}{250} = \frac{81}{125}$</span></label>
+      <label class="opt"><input type="radio" name="q21" value="c"><span class="k">C</span><span>$\frac{162}{88}$</span></label>
+      <label class="opt"><input type="radio" name="q21" value="d"><span class="k">D</span><span>$\frac{58}{250}$</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">88 son los administrativos más operarios ($30+58$), no los impulsadores.</p>
+      <p class="why" data-for="c">Compara impulsadores con el resto de empleados; se pide la parte respecto al total.</p>
+      <p class="why" data-for="d">Esa es la razón de los operarios.</p>
+      <p><span class="lbl">Explicación: </span>Impulsadores $= 250-30-58 = 162$. Razón $\frac{162}{250} = \frac{81}{125} = 0{,}648$ (64,8 %).</p>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q" data-answer="a" data-mod="Proporciones">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">En la proporción $\frac{a}{b} = \frac{c}{d}$, ¿cuáles son los extremos y cuáles los medios?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q22" value="a"><span class="k">A</span><span>Extremos: $a$ y $d$. Medios: $b$ y $c$.</span></label>
+      <label class="opt"><input type="radio" name="q22" value="b"><span class="k">B</span><span>Extremos: $a$ y $c$. Medios: $b$ y $d$.</span></label>
+      <label class="opt"><input type="radio" name="q22" value="c"><span class="k">C</span><span>Extremos: $b$ y $c$. Medios: $a$ y $d$.</span></label>
+      <label class="opt"><input type="radio" name="q22" value="d"><span class="k">D</span><span>Extremos: los numeradores. Medios: los denominadores.</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="b">$a$ y $c$ son los antecedentes (numeradores), no los extremos.</p>
+      <p class="why" data-for="c">Está invertido.</p>
+      <p class="why" data-for="d">Leyendo $a : b = c : d$, los extremos son el primero y el último; no tiene que ver con numeradores y denominadores.</p>
+      <p><span class="lbl">Explicación: </span>Según la guía, $a$ y $d$ son los extremos (primero y último) y $b$ y $c$ los medios.</p>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q" data-answer="c" data-mod="Proporciones">
+    <div class="q-top"><span class="q-n"></span><span class="badge"></span></div>
+    <p class="qt">¿Cuál de estas igualdades <b>sí</b> es una proporción?</p>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q23" value="a"><span class="k">A</span><span>$\frac{2}{3} = \frac{3}{4}$</span></label>
+      <label class="opt"><input type="radio" name="q23" value="b"><span class="k">B</span><span>$\frac{1}{2} = \frac{2}{1}$</span></label>
+      <label class="opt"><input type="radio" name="q23" value="c"><span class="k">C</span><span>$\frac{3}{4} = \frac{9}{12}$</span></label>
+      <label class="opt"><input type="radio" name="q23" value="d"><span class="k">D</span><span>$\frac{5}{10} = \frac{10}{5}$</span></label>
+    </div>
+    <div class="fb">
+      <p class="why" data-for="a">Extremos: $2\cdot4 = 8$; medios: $3\cdot3 = 9$. No coinciden.</p>
+      <p class="why" data-for="b">$0{,}5 \neq 2$. Extremos $1\cdot1=1$, medios $2\cdot2=4$.</p>
+      <p class="why" data-for="d">$0{,}5 \neq 2$. Extremos $5\cdot5=25$, medios $10\cdot10=100$.</p>
+      <p><span class="lbl">Explicación: </span>Producto de extremos $3\cdot12 = 36$ y producto de medios $4\cdot9 = 36$: son iguales, así que es proporción. También: $\frac{3}{4} = 0{,}75 = \frac{9}{12}$.</p>
+    </div>
+  </div>
+
+  </form>
+
+  <div class="actions">
+    <button class="btn" id="submit" type="button">Entregar respuestas</button>
+    <button class="btn ghost hidden" id="retry" type="button">Volver a intentar</button>
+    <span class="warn-msg" id="warn"></span>
+  </div>
+</div>
+</div>
+
+<footer>Material elaborado a partir de la grabación “Clase 3 de octubre” y de lo escrito en el tablero y la guía mostrada en clase.</footer>
+
+<script>
+/* ---------- mini renderizador de fórmulas (sin dependencias) ---------- */
+(function(){
+  var SYM = {cdot:'·',times:'×',Rightarrow:'⇒',to:'→',infty:'∞',neq:'≠',pm:'±',in:'∈',le:'≤',ge:'≥',qquad:'<span class="quad"></span><span class="quad"></span>',quad:'<span class="quad"></span>',',':'<span class="thin"></span>',';':'<span class="thin"></span><span class="thin"></span>',' ':' ','{':'{','}':'}'};
+  function tex(src){
+    var i = 0;
+    function ws(){ while(i < src.length && src[i] === ' ') i++; }
+    function group(){
+      ws();
+      if(src[i] === '{'){ i++; var h = seq('}'); i++; return h; }
+      return atom();
+    }
+    function rawGroup(){
+      ws(); if(src[i] !== '{') return '';
+      var depth = 1, j = i + 1;
+      while(j < src.length && depth){ if(src[j]==='{') depth++; else if(src[j]==='}') depth--; j++; }
+      var t = src.slice(i+1, j-1); i = j; return t;
+    }
+    function seq(end){ var out = ''; while(i < src.length && src[i] !== end){ out += atom(); } return out; }
+    function atom(){
+      var c = src[i];
+      if(c === '\\'){
+        var m = /^\\([a-zA-Z]+|.)/.exec(src.slice(i)); i += m[0].length; var n = m[1];
+        if(n === 'frac'){ var a = group(), b = group(); return '<span class="fr"><span class="nu">'+a+'</span><span class="de">'+b+'</span></span>'; }
+        if(n === 'sqrt'){ return '<span class="sq"><span class="sr">√</span><span class="rad">'+group()+'</span></span>'; }
+        if(n === 'cancel'){ return '<span class="cx">'+group()+'</span>'; }
+        if(n === 'hl' || n === 'hr' || n === 'hg'){ return '<span class="'+n+'">'+group()+'</span>'; }
+        if(n === 'text'){ return '<span style="font-family:var(--sans);font-size:.85em">'+rawGroup()+'</span>'; }
+        if(n === 'mathbb'){ var t = rawGroup(); return t === 'R' ? 'ℝ' : t; }
+        if(SYM.hasOwnProperty(n)) return SYM[n];
+        return n;
+      }
+      if(c === '^'){ i++; return '<sup>'+group()+'</sup>'; }
+      if(c === '_'){ i++; return '<sub>'+group()+'</sub>'; }
+      if(c === '{'){ i++; var h = seq('}'); i++; return h; }
+      i++;
+      if(c === ' ') return '';
+      if(/[a-zA-Z]/.test(c)) return '<i>'+c+'</i>';
+      if(c === '-') return '<span class="op">−</span>';
+      if(c === '+' || c === '=') return '<span class="op">'+c+'</span>';
+      return c;
+    }
+    return seq(undefined);
+  }
+  function decode(s){ return s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&nbsp;/g,' '); }
+  function render(root){
+    root.querySelectorAll('.md, .mx').forEach(function(el){ el.innerHTML = tex(decode(el.innerHTML)); });
+    root.querySelectorAll('*:not(script):not(style)').forEach(function(el){
+      for(var k = 0; k < el.childNodes.length; k++){
+        var nd = el.childNodes[k];
+        if(nd.nodeType === 3 && nd.nodeValue.indexOf('$') > -1){
+          var span = document.createElement('span');
+          span.innerHTML = nd.nodeValue.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\$([^$]+)\$/g, function(_, t){ return '<span class="mx">'+tex(t)+'</span>'; });
+          el.replaceChild(span, nd);
+        }
+      }
+    });
+  }
+  render(document.body);
+})();
+
+/* ---------- pestañas ---------- */
+(function(){
+  var tabs = document.querySelectorAll('.tab');
+  function show(id){
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', t.getAttribute('aria-controls') === id ? 'true' : 'false'); });
+    document.getElementById('estudio').classList.toggle('hidden', id !== 'estudio');
+    document.getElementById('examen').classList.toggle('hidden', id !== 'examen');
+    window.scrollTo({top:0});
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.getAttribute('aria-controls')); }); });
+  document.querySelectorAll('[data-goto]').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); show(a.getAttribute('data-goto')); }); });
+  /* índice activo */
+  var links = document.querySelectorAll('nav.toc ol a');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ links.forEach(function(l){ l.classList.toggle('on', l.getAttribute('href') === '#'+en.target.id); }); } });
+    }, {rootMargin:'-20% 0px -70% 0px'});
+    document.querySelectorAll('section.mod').forEach(function(s){ io.observe(s); });
+  }
+})();
+
+/* ---------- examen ---------- */
+(function(){
+  var qs = Array.prototype.slice.call(document.querySelectorAll('.q'));
+  var total = qs.length, bar = document.getElementById('bar'), count = document.getElementById('count');
+  var submit = document.getElementById('submit'), retry = document.getElementById('retry'), warn = document.getElementById('warn');
+  var summary = document.getElementById('summary');
+  qs.forEach(function(q, k){ q.id = 'q' + (k+1); q.querySelector('.q-n').textContent = 'PREGUNTA ' + (k+1) + ' DE ' + total; });
+  qs.forEach(function(q){ var tag = document.createElement('span'); tag.className = 'q-tag'; tag.textContent = q.dataset.mod; q.querySelector('.q-top').insertBefore(tag, q.querySelector('.badge')); });
+  function chosen(q){ var c = q.querySelector('input:checked'); return c ? c.value : null; }
+  function progress(){
+    var n = qs.filter(function(q){ return chosen(q); }).length;
+    bar.style.width = (100*n/total) + '%';
+    count.textContent = n + ' / ' + total + ' respondidas';
+    if(n === total) warn.textContent = '';
+    return n;
+  }
+  document.getElementById('quiz').addEventListener('change', progress);
+  progress();
+
+  var confirmPending = false;
+  submit.addEventListener('click', function(){
+    var n = progress();
+    if(n < total && !confirmPending){
+      warn.textContent = 'Te faltan ' + (total-n) + ' pregunta(s). Pulsa “Entregar” otra vez para entregar de todos modos (contarán como incorrectas).';
+      confirmPending = true; return;
+    }
+    grade();
+  });
+
+  function grade(){
+    confirmPending = false; warn.textContent = '';
+    var right = 0, byMod = {};
+    qs.forEach(function(q){
+      var ans = q.dataset.answer, c = chosen(q), ok = c === ans;
+      var m = q.dataset.mod; byMod[m] = byMod[m] || [0,0]; byMod[m][1]++; if(ok){ byMod[m][0]++; right++; }
+      q.classList.add('graded'); q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok);
+      q.querySelectorAll('input').forEach(function(inp){
+        inp.disabled = true;
+        var lab = inp.closest('.opt');
+        lab.classList.toggle('is-correct', inp.value === ans);
+        lab.classList.toggle('is-wrong', inp.checked && inp.value !== ans);
+      });
+      var letter = String.fromCharCode(64 + 'abcd'.indexOf(ans) + 1);
+      q.querySelector('.badge').textContent = ok ? '✓ Correcta' : (c ? '✗ Incorrecta' : '✗ Sin responder');
+      q.querySelectorAll('.why').forEach(function(w){ w.classList.toggle('show', !ok && c && w.dataset.for === c); });
+      var lbl = q.querySelector('.fb > p:last-child .lbl');
+      lbl.textContent = ok ? 'Correcto. ' : ('La respuesta correcta es la ' + letter + '. ');
+      var whyShown = q.querySelector('.why.show');
+      if(whyShown && !whyShown.querySelector('b.pre')){ whyShown.insertAdjacentHTML('afterbegin', '<b class="pre">Por qué tu opción no es correcta: </b>'); }
+    });
+    var pct = Math.round(100*right/total);
+    var msg = pct >= 90 ? '¡Excelente! Dominas los temas de la clase.' : pct >= 70 ? 'Muy bien. Repasa las preguntas marcadas en rojo.' : pct >= 50 ? 'Vas por buen camino. Vuelve a los módulos de las preguntas falladas.' : 'Conviene repasar el material de estudio y volver a intentarlo.';
+    var mods = Object.keys(byMod).map(function(m){ return '<div><span>'+m+'</span><b>'+byMod[m][0]+' / '+byMod[m][1]+'</b></div>'; }).join('');
+    summary.innerHTML = '<div class="score"><div class="big">'+right+'<small> / '+total+'</small></div><div><b>'+pct+' %</b> de aciertos<br><span style="color:var(--muted)">'+msg+'</span></div></div>'
+      + '<div class="mods">'+mods+'</div>'
+      + '<div class="filter" role="group" aria-label="Filtrar preguntas"><button type="button" data-f="all" aria-pressed="true">Todas</button><button type="button" data-f="bad" aria-pressed="false">Solo incorrectas ('+(total-right)+')</button><button type="button" data-f="ok" aria-pressed="false">Solo correctas ('+right+')</button></div>';
+    summary.classList.add('show');
+    summary.querySelectorAll('.filter button').forEach(function(b){
+      b.addEventListener('click', function(){
+        summary.querySelectorAll('.filter button').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        var f = b.dataset.f;
+        qs.forEach(function(q){ q.classList.toggle('hidden', f !== 'all' && !q.classList.contains(f)); });
+      });
+    });
+    submit.classList.add('hidden'); retry.classList.remove('hidden');
+    summary.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  retry.addEventListener('click', function(){
+    qs.forEach(function(q){
+      q.classList.remove('graded','ok','bad','hidden');
+      q.querySelectorAll('input').forEach(function(inp){ inp.disabled = false; inp.checked = false; });
+      q.querySelectorAll('.opt').forEach(function(l){ l.classList.remove('is-correct','is-wrong'); });
+      q.querySelectorAll('.why').forEach(function(w){ w.classList.remove('show'); var p = w.querySelector('b.pre'); if(p) p.remove(); });
+    });
+    summary.classList.remove('show'); summary.innerHTML = '';
+    retry.classList.add('hidden'); submit.classList.remove('hidden');
+    progress(); window.scrollTo({top:0, behavior:'smooth'});
+  });
+})();
+</script>
+</body>
+</html>
